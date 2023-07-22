@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Toast, toastStore, localStorageStore } from '@skeletonlabs/skeleton'
+	import { LightSwitch, Toast, toastStore, localStorageStore } from '@skeletonlabs/skeleton'
 	import type { Writable } from 'svelte/store'
 	import type { ToastSettings } from '@skeletonlabs/skeleton'
 	interface Contacts {
@@ -34,6 +34,7 @@
 	}
 </script>
 
+<LightSwitch class="float-right m-4"/>
 <div class="container mx-auto flex justify-center items-center">
 	<div class="space-y-5">
 		<h1 class="h1 m-10 text-center">Contacts</h1>
