@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { localStorageStore } from '@skeletonlabs/skeleton'
+	import { Toast, toastStore, localStorageStore } from '@skeletonlabs/skeleton'
 	import type { Writable } from 'svelte/store'
-
+	import type { ToastSettings } from '@skeletonlabs/skeleton'
 	interface Contacts {
 		name: string
 		phone: string
@@ -13,6 +13,14 @@
 	let inputPhone = ''
 
 	function addContact() {
+		if (inputName === '' || inputPhone === '') {
+			const t: ToastSettings = {
+				message: 'Please fill in all fields',
+				timeout: 2000
+			}
+			toastStore.trigger(t)
+			return
+		}
 		$contactStore = [{ name: inputName, phone: inputPhone }, ...$contactStore]
 		inputName = ''
 		inputPhone = ''
@@ -57,5 +65,6 @@
 		{#if $contactStore.length === 0}
 			<p class="text-center">You don't have any contacts yet</p>
 		{/if}
+		<Toast />
 	</div>
 </div>
